@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'home']);
+Route::post('/register', [HomeController::class, 'register'])->name('register');

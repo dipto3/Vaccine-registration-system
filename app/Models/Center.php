@@ -9,9 +9,7 @@ class Center extends Model
 {
     use HasFactory;
 
-    const STATUS_NOT_VACCINATED = 'Not vaccinated';
-    const STATUS_SCHEDULED = 'Scheduled';
-    const STATUS_VACCINATED = 'Vaccinated';
+   
 
     protected $fillable = [
         'name',

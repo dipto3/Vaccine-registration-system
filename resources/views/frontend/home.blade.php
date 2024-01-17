@@ -5,7 +5,8 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h6 class="title"><b>Vaccine Registration Form</b></h6>
-                    <form method="POST">
+                    <form action="{{ route('register') }}" method="POST">
+                        @csrf
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -37,13 +38,13 @@
                         <div class="input-group">
                             <label class="label">Select vaccine center</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="subject">
+                                <select name="center">
                                     <option disabled="disabled" selected="selected">
                                         Choose option
                                     </option>
-                                    <option>Subject 1</option>
-                                    <option>Subject 2</option>
-                                    <option>Subject 3</option>
+                                    @foreach ($centers as $center)
+                                        <option value="{{ $center->id }}">{{ $center->name }}</option>
+                                    @endforeach
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>
