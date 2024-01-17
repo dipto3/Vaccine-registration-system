@@ -16,7 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('nid');
+            $table->string('phone');
+            $table->unsignedBigInteger('center_id');
+            $table->foreign('center_id')->references('id')->on('centers')->onDelete('cascade');
+            $table->string('status')->default('Not vaccinated');
+            $table->boolean('isActive')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });
