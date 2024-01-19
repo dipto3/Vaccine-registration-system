@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegistrationFormRequest;
 use App\Mail\VaccinationMail;
 use App\Models\Center;
 use App\Models\Schedule;
@@ -19,8 +20,9 @@ class HomeController extends Controller
         return view('frontend.home', compact('centers'));
     }
 
-    public function register(Request $request)
+    public function register(RegistrationFormRequest $request)
     {
+        $request->validated();
         $user = User::create([
             'nid' => $request->nid,
             'email' => $request->email,
@@ -36,6 +38,4 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
-
-   
 }

@@ -12,12 +12,18 @@
                                 <div class="input-group">
                                     <label class="label">Full Name</label>
                                     <input class="input--style-4" type="text" name="name" />
+                                    @error('name')
+                                    <small style="color: red;">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">NID</label>
                                     <input class="input--style-4" type="text" name="nid" />
+                                    @error('nid')
+                                    <small style="color: red;">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -26,12 +32,18 @@
                                 <div class="input-group">
                                     <label class="label">Email</label>
                                     <input class="input--style-4" type="email" name="email" />
+                                    @error('email')
+                                        <small style="color: red;">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Phone Number</label>
                                     <input class="input--style-4" type="text" name="phone" />
+                                    @error('phone')
+                                    <small style="color: red;">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -46,6 +58,9 @@
                                         <option value="{{ $center->id }}">{{ $center->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('center')
+                                <small style="color: red;">{{ $message }}</small>
+                                @enderror
                                 <div class="select-dropdown"></div>
                             </div>
                         </div>
