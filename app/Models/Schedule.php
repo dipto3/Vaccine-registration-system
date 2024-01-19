@@ -18,4 +18,14 @@ class Schedule extends Model
         'scheduled_at',
         'status',
     ];
+
+    public function userInfo()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
+
+    public function center()
+    {
+        return $this->belongsTo(Center::class);
+    }
 }

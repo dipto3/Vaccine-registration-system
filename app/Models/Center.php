@@ -9,7 +9,7 @@ class Center extends Model
 {
     use HasFactory;
 
-   
+
 
     protected $fillable = [
         'name',
@@ -17,4 +17,6 @@ class Center extends Model
         'dailyLimit',
         'status',
     ];
+
+    
 }

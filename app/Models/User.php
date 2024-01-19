@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'nid',
         'phone',
-        
+
     ];
 
     /**
@@ -44,4 +44,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function scheduleInfo()
+    {
+        return $this->hasMany(Schedule::class, 'user_id');
+    }
 }

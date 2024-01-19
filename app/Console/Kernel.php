@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command(VaccineSchedule::class)->dailyAt('01:28')->weekdays([0, 1, 2, 3, 4]);
+        $schedule->command(VaccineSchedule::class)->dailyAt('15:41');
     }
 
     /**

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\VaccinationMail;
 use App\Models\Center;
 use App\Models\Schedule;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -30,6 +33,9 @@ class HomeController extends Controller
             'center_id' => $request->center,
             'status' => Schedule::NOT_VACCINATED,
         ]);
+
         return redirect()->back();
     }
+
+   
 }

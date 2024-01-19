@@ -6,6 +6,8 @@ use App\Models\Center;
 use App\Models\Schedule;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VaccinationMail;
 
 class VaccineSchedule extends Command
 {
@@ -28,7 +30,7 @@ class VaccineSchedule extends Command
      */
     public function handle()
     {
-        $this->info('Scheduling vaccination...');
+
         $centers = Center::all();
 
         foreach ($centers as $center) {
@@ -40,11 +42,13 @@ class VaccineSchedule extends Command
                 ->limit($limit)
                 ->get();
             foreach ($users as $user) {
+                if (!in_array(now()->dayOfWeek, [5, 6])) {
                 $user->status = Schedule::SCHEDULED;
-                $user->scheduled_at = Carbon::now()->addDays(1)->hour(21)->minute(0)->second(0)->format('Y-m-d H:i:s');
+                $user->scheduled_at = Carbon::now()->addDays(1)->hour(10)->minute(0)->second(0)->format('Y-m-d H:i:s');
+                Mail::to($user->userInfo->email)->send(new VaccinationMail($user));
                 $user->save();
+                }
             }
         }
-        $this->info('Vaccination scheduling completed.');
     }
 }
