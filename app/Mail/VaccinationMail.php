@@ -14,11 +14,11 @@ use Illuminate\Queue\SerializesModels;
 class VaccinationMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
-    public $user;
+
     /**
      * Create a new message instance.
      */
-    public function __construct(Schedule $user)
+    public function __construct(public Schedule $user)
     {
         $this->user = $user;
     }
