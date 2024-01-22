@@ -38,4 +38,35 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+
+    public function zapier(Request $request)
+    {
+        $data = $request->all();
+        $centerName = $data['center_id'];
+        $vaccineCenter = Center::where('name', $centerName)->first();
+        $vaccineCenterId = $vaccineCenter->id;
+       
+        $name = $data['name'];
+        $phoneNumber = $data['phone'];
+        $nid = $data['nid'];
+        $email = $data['email'];
+
+        $registration = User::create([
+
+            'name' => $name,
+            'phone' => $phoneNumber,
+            'nid' => $nid,
+            'email' => $email,
+        ]);
+        Schedule::create([
+            'user_id' => $registration->id,
+            'center_id' => $vaccineCenterId,
+            'status' => Schedule::NOT_VACCINATED,
+        ]);
+
+        return response()->json(['message' => 'Registration successful!']); 
+        
+    }
+
 }
