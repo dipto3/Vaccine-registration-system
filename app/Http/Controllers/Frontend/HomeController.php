@@ -8,33 +8,30 @@ use App\Mail\VaccinationMail;
 use App\Models\Center;
 use App\Models\Schedule;
 use App\Models\User;
+use App\Services\RegistrationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 
 class HomeController extends Controller
 {
+
+    protected $registrationService;
+
+    public function __construct(RegistrationService $registrationService)
+    {
+        $this->registrationService = $registrationService;
+    }
     public function home()
     {
-        $centers = Center::all();
-        return view('frontend.home', compact('centers'));
+        $centers = $this->registrationService->home();
+        return view('frontend.home', $centers);
     }
 
     public function register(RegistrationFormRequest $request)
     {
         $request->validated();
-        $user = User::create([
-            'nid' => $request->nid,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'name' => $request->name,
-        ]);
-
-        Schedule::create([
-            'user_id' => $user->id,
-            'center_id' => $request->center,
-            'status' => Schedule::NOT_VACCINATED,
-        ]);
+        $this->registrationService->register($request);
 
         return redirect()->back();
     }
@@ -46,7 +43,7 @@ class HomeController extends Controller
         $centerName = $data['center_id'];
         $vaccineCenter = Center::where('name', $centerName)->first();
         $vaccineCenterId = $vaccineCenter->id;
-       
+
         $name = $data['name'];
         $phoneNumber = $data['phone'];
         $nid = $data['nid'];
@@ -65,8 +62,6 @@ class HomeController extends Controller
             'status' => Schedule::NOT_VACCINATED,
         ]);
 
-        return response()->json(['message' => 'Registration successful!']); 
-        
+        return response()->json(['message' => 'Registration successful!']);
     }
-
 }
