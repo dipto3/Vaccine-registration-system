@@ -8,6 +8,10 @@
 </p>
 
 ## Explanation video
+<<<<<<< HEAD
+=======
+https://drive.google.com/file/d/1WZ8-vcRAEYk_qR6E6BZ7YULpPKV4YpQs/view
+>>>>>>> 8296edd46133313103bf01cbea4b83c61e8cc034
 
 <a href="[https://packagist.org/packages/laravel/framework](https://drive.google.com/file/d/1WZ8-vcRAEYk_qR6E6BZ7YULpPKV4YpQs/view?usp=drive_link)https://drive.google.com/file/d/1WZ8-vcRAEYk_qR6E6BZ7YULpPKV4YpQs/view?usp=drive_link">bit.ly/3Sb1mId</a>
 
