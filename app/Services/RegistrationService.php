@@ -12,7 +12,7 @@ class RegistrationService
     public function home()
     {
         $centers = Center::all();
-        return compact($centers);
+        return compact('centers');
     }
 
     public function register($request)
